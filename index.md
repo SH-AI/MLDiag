@@ -1,36 +1,30 @@
-## Welcome to GitHub Pages
+## Welcome to MLDiag Page
 
-You can use the [editor on GitHub](https://github.com/SH-AI/MLDiag/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+An effective machine learing model diagnosing tool
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Introduction
 
-### Markdown
+Testing machine learning models is usually limited to some actions, mainly:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- algorithmic performances (metrics) of the model over a validation set (accuracy, precision, recall, etc.),
+- computational performances of the model (speed, memory, etc.)
+- examples where the model was most confidently incorrect
 
-```markdown
-Syntax highlighted code block
+Decision made to promote a model into production is usually based on theses observations::
 
-# Header 1
-## Header 2
-### Header 3
+- is the current model offering an improvement over the existing version when evaluated on the same dataset.
+- is the current model reaching the business required performance.
 
-- Bulleted
-- List
+The model that fulfill this checklist is saved, along with hyperparamters and dataset that were used to validate the model, using MLFlow for instance. However, this traditional model checking lacks many important features:
 
-1. Numbered
-2. List
+- where the model does usually fail, and how to fix it?
+- does the model generalize well on some variations over the evaluation set?
+- how to track (and prevent) behavioral regressions for specific failure modes that had been previously addressed? Indeed, you might improve the overall evaluation metric but introduce a regression on a critical subset of data. Or you could unknowingly add a gender bias to the model through the inclusion of a new dataset during training.
+- how can we define the best directions for model future improvement researcher usually look at a small set of incorrect predicted data to understand model failure. Such approach is biased since small samples are likely unrepresentative of the true error distribution. A more precise, reproducible, scalable, and testable procedure is required.
 
-**Bold** and _Italic_ and `Code` text
+The checklist could be larger, but work is usually made manually.
 
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/SH-AI/MLDiag/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+MLDiag is a simple, yet effective framework, to handle model evaluation automatically. It provides at the end of the evaluation a comprehensive report on model robustness to adversarial attacks and simple tracks to improve its performances.
 
 ### Support or Contact
 
